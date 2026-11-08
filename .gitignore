@@ -1,0 +1,12 @@
+# Виртуальное окружение
+venv/
+.venv/
+env/
+ENV/
+*.sqlite3
+.idea/
+.vscode/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
