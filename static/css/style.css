@@ -1,0 +1,99 @@
+* { box-sizing: border-box; }
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    background: #f5f6fa;
+    color: #222;
+}
+header {
+    background: #2c3e50;
+    padding: 12px 24px;
+}
+header nav {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+header nav a, header nav button {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-weight: 500;
+}
+header nav a:hover { text-decoration: underline; }
+.inline-form { display: inline; }
+.link-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+}
+main {
+    max-width: 900px;
+    margin: 24px auto;
+    padding: 0 16px;
+}
+h1, h2 { color: #2c3e50; }
+.btn {
+    display: inline-block;
+    background: #3498db;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+.btn:hover { background: #2980b9; }
+.btn-secondary { background: #95a5a6; }
+.btn-secondary:hover { background: #7f8c8d; }
+.btn-small { padding: 4px 10px; font-size: 13px; }
+.form-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08);
+    margin-bottom: 24px;
+}
+.form-card p { margin: 10px 0; }
+.form-control, input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+.filters a {
+    padding: 6px 12px;
+    background: #ecf0f1;
+    border-radius: 20px;
+    text-decoration: none;
+    color: #2c3e50;
+    font-size: 14px;
+}
+.filters a.active { background: #3498db; color: #fff; }
+.book-card {
+    background: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+.book-card h3 { margin-top: 0; }
+.reviews { padding-left: 18px; color: #444; }
+.reviews li { margin-bottom: 8px; }
+blockquote {
+    border-left: 3px solid #3498db;
+    margin: 6px 0;
+    padding-left: 10px;
+    color: #666;
+    font-style: italic;
+}

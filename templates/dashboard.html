@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Мои книги{% endblock %}
+{% block content %}
+    <h2>Мои книги</h2>
+
+    <div class="filters">
+        <a href="{% url 'dashboard' %}" class="{% if status_filter == 'all' %}active{% endif %}">Все</a>
+        {% for code, label in status_choices %}
+            <a href="{% url 'dashboard' %}?status={{ code }}"
+               class="{% if status_filter == code %}active{% endif %}">{{ label }}</a>
+        {% endfor %}
+    </div>
+
+    {% if books %}
+        <div class="book-list">
+            {% for book in books %}
+                <div class="book-card">
+                    <h3>{{ book.title }} — {{ book.author }}</h3>
+                    <p>Жанр: {{ book.genre }} | Статус: {{ book.get_status_display }}</p>
+                    {% if book.avg_rating %}
+                        <p>Средняя оценка: {{ book.avg_rating|floatformat:1 }}/5</p>
+                    {% else %}
+                        <p>Рецензий пока нет</p>
+                    {% endif %}
+                    <a class="btn btn-small" href="{% url 'review_add' book.id %}">Добавить рецензию</a>
+
+                    {% if book.reviews.all %}
+                        <ul class="reviews">
+                            {% for review in book.reviews.all %}
+                                <li>
+                                    <strong>{{ review.rating }}/5</strong> — {{ review.text|truncatechars:100 }}
+                                    {% if review.quote %}<blockquote>{{ review.quote }}</blockquote>{% endif %}
+                                    <small>{{ review.created_at|date:"d.m.Y H:i" }}</small>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Книг нет. <a href="{% url 'book_add' %}">Добавить первую книгу</a></p>
+    {% endif %}
+{% endblock %}
