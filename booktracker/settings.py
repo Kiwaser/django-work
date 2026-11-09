@@ -2,7 +2,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = '^^@r+d0d+r+=r@k2spa9=8*-30-al%6s!%jn)35w!lram8=@e1'
+SECRET_KEY = 'dsfii1239JDf'
 DEBUG = True
 ALLOWED_HOSTS = ['*']
 
@@ -13,6 +13,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'books',
 ]
 
 MIDDLEWARE = [
