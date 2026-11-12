@@ -39,7 +39,7 @@ class Book(models.Model):
 class Review(models.Model):
     book = models.ForeignKey(
         Book,
-        on_delete=models.CASCADE,  # каскадное удаление отзывов при удалении книги
+        on_delete=models.CASCADE,
         related_name='reviews',
         verbose_name='Книга',
     )

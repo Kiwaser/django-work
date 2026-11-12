@@ -9,12 +9,10 @@ from .forms import BookForm, ReviewForm
 
 
 def home(request):
-    """Промо-страница, доступна всем."""
     return render(request, 'home.html')
 
 
 def register(request):
-    """Регистрация нового пользователя."""
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -28,10 +26,6 @@ def register(request):
 
 @login_required
 def dashboard(request):
-    """
-    Список книг ТЕКУЩЕГО пользователя с фильтрацией по статусу.
-    Всегда фильтруем по request.user — чужие данные недоступны.
-    """
     status_filter = request.GET.get('status', 'all')
 
     books = Book.objects.filter(user=request.user)
@@ -39,7 +33,6 @@ def dashboard(request):
     if status_filter in ('want', 'reading', 'done'):
         books = books.filter(status=status_filter)
 
-    # агрегация средней оценки по каждой книге на уровне ORM
     books = books.annotate(avg_rating=Avg('reviews__rating'))
 
     context = {
@@ -52,12 +45,11 @@ def dashboard(request):
 
 @login_required
 def book_add(request):
-    """Добавление книги. Пользователь проставляется автоматически."""
     if request.method == 'POST':
         form = BookForm(request.POST)
         if form.is_valid():
             book = form.save(commit=False)
-            book.user = request.user  # жёсткая привязка к текущему юзеру
+            book.user = request.user
             book.save()
             return redirect('dashboard')
     else:
@@ -67,10 +59,6 @@ def book_add(request):
 
 @login_required
 def review_add(request, book_id):
-    """
-    Добавление рецензии к книге.
-    Доступ только к СВОИМ книгам — фильтр по request.user.
-    """
     book = get_object_or_404(Book, pk=book_id, user=request.user)
 
     if request.method == 'POST':

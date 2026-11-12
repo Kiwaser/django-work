@@ -7,7 +7,7 @@ from .models import Book, Review
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ['title', 'author', 'genre', 'status']  # поле user исключено
+        fields = ['title', 'author', 'genre', 'status']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'author': forms.TextInput(attrs={'class': 'form-control'}),
